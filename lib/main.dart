@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/src/article.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Article> _articles = articles;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,18 +39,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ListTile(
-              title: Text(
-                'Added list tile, TODO; addd articles here',
-              ),
-              onTap: () {},
-            )
-          ],
-        ),
-      ),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: _articles.map(_buildArticle).toList())),
     );
+  }
+
+  Widget _buildArticle(article) {
+    return Text(article.title);
   }
 }
