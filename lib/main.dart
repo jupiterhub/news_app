@@ -39,13 +39,23 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: _articles.map(_buildArticle).toList())),
+          child: ListView(children: _articles.map(_buildArticle).toList())),
     );
   }
 
-  Widget _buildArticle(article) {
-    return Text(article.title);
+  Widget _buildArticle(Article article) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListTile(
+        title: Text(
+          article.title,
+          style: TextStyle(fontSize: 18.0),
+        ),
+        subtitle: Text("${article.kids.length} comments"),
+        onTap: () {
+
+        },
+      ),
+    );
   }
 }
