@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/src/article.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,16 +47,39 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget _buildArticle(Article article) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: ListTile(
+      child: ExpansionTile(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text("${article.kids.length} comments"),
+              IconButton(
+                icon: Icon(Icons.launch),
+                onPressed: () async {
+                  _launchInWebViewWithJavaScript(article.url);
+                },
+              )
+            ],
+          )
+        ],
         title: Text(
           article.title,
           style: TextStyle(fontSize: 18.0),
         ),
-        subtitle: Text("${article.kids.length} comments"),
-        onTap: () {
-
-        },
       ),
     );
+  }
+
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
