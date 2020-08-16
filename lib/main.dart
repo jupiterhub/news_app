@@ -43,7 +43,9 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
             child: ListView(children: _articles.map(_buildArticle).toList())),
         onRefresh: () {
-          // TODO add refresh duration
+          setState(() {
+            _articles.remove(0);
+          });
           return;
         },
       )
