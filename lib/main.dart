@@ -43,8 +43,10 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Center(
             child: ListView(children: _articles.map(_buildArticle).toList())),
         onRefresh: () {
-          setState(() {
-            _articles.remove(0);
+          Future.delayed(Duration(seconds: 2), () {
+            setState(() {
+              _articles.remove(0);
+            });
           });
           return;
         },
