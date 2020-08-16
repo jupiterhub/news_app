@@ -42,13 +42,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: RefreshIndicator(
         child: Center(
             child: ListView(children: _articles.map(_buildArticle).toList())),
-        onRefresh: () {
-          Future.delayed(Duration(seconds: 2), () {
+        onRefresh: () async {
+          await Future.delayed(Duration(seconds: 1), () {
             setState(() {
-              _articles.remove(0);
+              _articles.removeAt(0);
             });
           });
-          return;
         },
       )
     );
