@@ -21,6 +21,21 @@ class Article {
       this.url,
       this.text,
       this.kids});
+
+  factory Article.fromJson(Map<String, dynamic> json) {
+    if (json == null) return null;
+    return Article(
+        id: json["id"],
+        by: json["by"],
+        descendants: json["descendants"],
+        score: json["score"],
+        time: json["time"] ?? 0,
+        title: json["title"],
+        type: json["type"],
+        url: json["url"],
+        text: json["text"] ?? '[null]',
+        kids: json["kids"]);
+  }
 }
 
 final articles = [

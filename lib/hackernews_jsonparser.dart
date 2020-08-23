@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:news_app/src/article.dart';
 
 List<int> parseStories(String jsonStr) {
-  throw UnimplementedError();
+  List<dynamic> json = jsonDecode(jsonStr);
+  return json.cast<int>();
 }
 
 Article parseArticle(String jsonStr) {
-  throw UnimplementedError();
+  Map<String, dynamic> json = jsonDecode(jsonStr);
+  return Article.fromJson(json);
 }
