@@ -7,10 +7,17 @@ part of 'articlebuilt.dart';
 // **************************************************************************
 
 class _$ArticleBuilt extends ArticleBuilt {
+  @override
+  final int id;
+
   factory _$ArticleBuilt([void Function(ArticleBuiltBuilder) updates]) =>
       (new ArticleBuiltBuilder()..update(updates)).build();
 
-  _$ArticleBuilt._() : super._();
+  _$ArticleBuilt._({this.id}) : super._() {
+    if (id == null) {
+      throw new BuiltValueNullFieldError('ArticleBuilt', 'id');
+    }
+  }
 
   @override
   ArticleBuilt rebuild(void Function(ArticleBuiltBuilder) updates) =>
@@ -22,17 +29,18 @@ class _$ArticleBuilt extends ArticleBuilt {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ArticleBuilt;
+    return other is ArticleBuilt && id == other.id;
   }
 
   @override
   int get hashCode {
-    return 763678998;
+    return $jf($jc(0, id.hashCode));
   }
 
   @override
   String toString() {
-    return newBuiltValueToStringHelper('ArticleBuilt').toString();
+    return (newBuiltValueToStringHelper('ArticleBuilt')..add('id', id))
+        .toString();
   }
 }
 
@@ -40,7 +48,19 @@ class ArticleBuiltBuilder
     implements Builder<ArticleBuilt, ArticleBuiltBuilder> {
   _$ArticleBuilt _$v;
 
+  int _id;
+  int get id => _$this._id;
+  set id(int id) => _$this._id = id;
+
   ArticleBuiltBuilder();
+
+  ArticleBuiltBuilder get _$this {
+    if (_$v != null) {
+      _id = _$v.id;
+      _$v = null;
+    }
+    return this;
+  }
 
   @override
   void replace(ArticleBuilt other) {
@@ -57,7 +77,7 @@ class ArticleBuiltBuilder
 
   @override
   _$ArticleBuilt build() {
-    final _$result = _$v ?? new _$ArticleBuilt._();
+    final _$result = _$v ?? new _$ArticleBuilt._(id: id);
     replace(_$result);
     return _$result;
   }
