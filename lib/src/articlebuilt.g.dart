@@ -11,7 +11,7 @@ class _$ArticleBuilt extends ArticleBuilt {
   final int id;
 
   factory _$ArticleBuilt([void Function(ArticleBuiltBuilder) updates]) =>
-      (new ArticleBuiltBuilder()..update(updates)).build();
+      (new ArticleBuiltBuilder()..update(updates)).build ();
 
   _$ArticleBuilt._({this.id}) : super._() {
     if (id == null) {
