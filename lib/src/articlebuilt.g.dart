@@ -9,6 +9,7 @@ part of 'articlebuilt.dart';
 class _$ArticleBuilt extends ArticleBuilt {
   @override
   final int id;
+  final int score;
 
   factory _$ArticleBuilt([void Function(ArticleBuiltBuilder) updates]) =>
       (new ArticleBuiltBuilder()..update(updates)).build ();
