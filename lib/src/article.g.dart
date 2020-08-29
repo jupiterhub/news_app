@@ -1,12 +1,151 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'articlebuilt.dart';
+part of 'article.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$ArticleBuilt extends ArticleBuilt {
+Serializer<Article> _$articleSerializer = new _$ArticleSerializer();
+
+class _$ArticleSerializer implements StructuredSerializer<Article> {
+  @override
+  final Iterable<Type> types = const [Article, _$Article];
+  @override
+  final String wireName = 'Article';
+
+  @override
+  Iterable<Object> serialize(Serializers serializers, Article object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object>[
+      'id',
+      serializers.serialize(object.id, specifiedType: const FullType(int)),
+      'deleted',
+      serializers.serialize(object.deleted,
+          specifiedType: const FullType(bool)),
+      'type',
+      serializers.serialize(object.type, specifiedType: const FullType(String)),
+      'by',
+      serializers.serialize(object.by, specifiedType: const FullType(String)),
+      'time',
+      serializers.serialize(object.time, specifiedType: const FullType(int)),
+      'text',
+      serializers.serialize(object.text, specifiedType: const FullType(String)),
+      'parent',
+      serializers.serialize(object.parent, specifiedType: const FullType(int)),
+      'poll',
+      serializers.serialize(object.poll, specifiedType: const FullType(int)),
+      'kids',
+      serializers.serialize(object.kids,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
+      'url',
+      serializers.serialize(object.url, specifiedType: const FullType(String)),
+      'score',
+      serializers.serialize(object.score, specifiedType: const FullType(int)),
+      'title',
+      serializers.serialize(object.title,
+          specifiedType: const FullType(String)),
+      'parts',
+      serializers.serialize(object.parts,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(int)])),
+      'descendants',
+      serializers.serialize(object.descendants,
+          specifiedType: const FullType(int)),
+    ];
+    if (object.dead != null) {
+      result
+        ..add('dead')
+        ..add(serializers.serialize(object.dead,
+            specifiedType: const FullType(bool)));
+    }
+    return result;
+  }
+
+  @override
+  Article deserialize(Serializers serializers, Iterable<Object> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new ArticleBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current as String;
+      iterator.moveNext();
+      final dynamic value = iterator.current;
+      switch (key) {
+        case 'id':
+          result.id = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'deleted':
+          result.deleted = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'type':
+          result.type = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'by':
+          result.by = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'time':
+          result.time = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'text':
+          result.text = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'dead':
+          result.dead = serializers.deserialize(value,
+              specifiedType: const FullType(bool)) as bool;
+          break;
+        case 'parent':
+          result.parent = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'poll':
+          result.poll = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'kids':
+          result.kids.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))
+              as BuiltList<Object>);
+          break;
+        case 'url':
+          result.url = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'score':
+          result.score = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+        case 'title':
+          result.title = serializers.deserialize(value,
+              specifiedType: const FullType(String)) as String;
+          break;
+        case 'parts':
+          result.parts.replace(serializers.deserialize(value,
+                  specifiedType:
+                      const FullType(BuiltList, const [const FullType(int)]))
+              as BuiltList<Object>);
+          break;
+        case 'descendants':
+          result.descendants = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$Article extends Article {
   @override
   final int id;
   @override
@@ -38,10 +177,10 @@ class _$ArticleBuilt extends ArticleBuilt {
   @override
   final int descendants;
 
-  factory _$ArticleBuilt([void Function(ArticleBuiltBuilder) updates]) =>
-      (new ArticleBuiltBuilder()..update(updates)).build();
+  factory _$Article([void Function(ArticleBuilder) updates]) =>
+      (new ArticleBuilder()..update(updates)).build();
 
-  _$ArticleBuilt._(
+  _$Article._(
       {this.id,
       this.deleted,
       this.type,
@@ -59,63 +198,60 @@ class _$ArticleBuilt extends ArticleBuilt {
       this.descendants})
       : super._() {
     if (id == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'id');
+      throw new BuiltValueNullFieldError('Article', 'id');
     }
     if (deleted == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'deleted');
+      throw new BuiltValueNullFieldError('Article', 'deleted');
     }
     if (type == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'type');
+      throw new BuiltValueNullFieldError('Article', 'type');
     }
     if (by == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'by');
+      throw new BuiltValueNullFieldError('Article', 'by');
     }
     if (time == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'time');
+      throw new BuiltValueNullFieldError('Article', 'time');
     }
     if (text == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'text');
-    }
-    if (dead == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'dead');
+      throw new BuiltValueNullFieldError('Article', 'text');
     }
     if (parent == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'parent');
+      throw new BuiltValueNullFieldError('Article', 'parent');
     }
     if (poll == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'poll');
+      throw new BuiltValueNullFieldError('Article', 'poll');
     }
     if (kids == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'kids');
+      throw new BuiltValueNullFieldError('Article', 'kids');
     }
     if (url == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'url');
+      throw new BuiltValueNullFieldError('Article', 'url');
     }
     if (score == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'score');
+      throw new BuiltValueNullFieldError('Article', 'score');
     }
     if (title == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'title');
+      throw new BuiltValueNullFieldError('Article', 'title');
     }
     if (parts == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'parts');
+      throw new BuiltValueNullFieldError('Article', 'parts');
     }
     if (descendants == null) {
-      throw new BuiltValueNullFieldError('ArticleBuilt', 'descendants');
+      throw new BuiltValueNullFieldError('Article', 'descendants');
     }
   }
 
   @override
-  ArticleBuilt rebuild(void Function(ArticleBuiltBuilder) updates) =>
+  Article rebuild(void Function(ArticleBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ArticleBuiltBuilder toBuilder() => new ArticleBuiltBuilder()..replace(this);
+  ArticleBuilder toBuilder() => new ArticleBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is ArticleBuilt &&
+    return other is Article &&
         id == other.id &&
         deleted == other.deleted &&
         type == other.type &&
@@ -167,7 +303,7 @@ class _$ArticleBuilt extends ArticleBuilt {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('ArticleBuilt')
+    return (newBuiltValueToStringHelper('Article')
           ..add('id', id)
           ..add('deleted', deleted)
           ..add('type', type)
@@ -187,9 +323,8 @@ class _$ArticleBuilt extends ArticleBuilt {
   }
 }
 
-class ArticleBuiltBuilder
-    implements Builder<ArticleBuilt, ArticleBuiltBuilder> {
-  _$ArticleBuilt _$v;
+class ArticleBuilder implements Builder<Article, ArticleBuilder> {
+  _$Article _$v;
 
   int _id;
   int get id => _$this._id;
@@ -251,9 +386,9 @@ class ArticleBuiltBuilder
   int get descendants => _$this._descendants;
   set descendants(int descendants) => _$this._descendants = descendants;
 
-  ArticleBuiltBuilder();
+  ArticleBuilder();
 
-  ArticleBuiltBuilder get _$this {
+  ArticleBuilder get _$this {
     if (_$v != null) {
       _id = _$v.id;
       _deleted = _$v.deleted;
@@ -276,24 +411,24 @@ class ArticleBuiltBuilder
   }
 
   @override
-  void replace(ArticleBuilt other) {
+  void replace(Article other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$ArticleBuilt;
+    _$v = other as _$Article;
   }
 
   @override
-  void update(void Function(ArticleBuiltBuilder) updates) {
+  void update(void Function(ArticleBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$ArticleBuilt build() {
-    _$ArticleBuilt _$result;
+  _$Article build() {
+    _$Article _$result;
     try {
       _$result = _$v ??
-          new _$ArticleBuilt._(
+          new _$Article._(
               id: id,
               deleted: deleted,
               type: type,
@@ -319,7 +454,7 @@ class ArticleBuiltBuilder
         parts.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'ArticleBuilt', _$failedField, e.toString());
+            'Article', _$failedField, e.toString());
       }
       rethrow;
     }
