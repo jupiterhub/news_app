@@ -20,21 +20,12 @@ class _$ArticleSerializer implements StructuredSerializer<Article> {
     final result = <Object>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'deleted',
-      serializers.serialize(object.deleted,
-          specifiedType: const FullType(bool)),
       'type',
       serializers.serialize(object.type, specifiedType: const FullType(String)),
       'by',
       serializers.serialize(object.by, specifiedType: const FullType(String)),
       'time',
       serializers.serialize(object.time, specifiedType: const FullType(int)),
-      'text',
-      serializers.serialize(object.text, specifiedType: const FullType(String)),
-      'parent',
-      serializers.serialize(object.parent, specifiedType: const FullType(int)),
-      'poll',
-      serializers.serialize(object.poll, specifiedType: const FullType(int)),
       'kids',
       serializers.serialize(object.kids,
           specifiedType:
@@ -54,11 +45,35 @@ class _$ArticleSerializer implements StructuredSerializer<Article> {
       serializers.serialize(object.descendants,
           specifiedType: const FullType(int)),
     ];
+    if (object.deleted != null) {
+      result
+        ..add('deleted')
+        ..add(serializers.serialize(object.deleted,
+            specifiedType: const FullType(bool)));
+    }
+    if (object.text != null) {
+      result
+        ..add('text')
+        ..add(serializers.serialize(object.text,
+            specifiedType: const FullType(String)));
+    }
     if (object.dead != null) {
       result
         ..add('dead')
         ..add(serializers.serialize(object.dead,
             specifiedType: const FullType(bool)));
+    }
+    if (object.parent != null) {
+      result
+        ..add('parent')
+        ..add(serializers.serialize(object.parent,
+            specifiedType: const FullType(int)));
+    }
+    if (object.poll != null) {
+      result
+        ..add('poll')
+        ..add(serializers.serialize(object.poll,
+            specifiedType: const FullType(int)));
     }
     return result;
   }
@@ -200,9 +215,6 @@ class _$Article extends Article {
     if (id == null) {
       throw new BuiltValueNullFieldError('Article', 'id');
     }
-    if (deleted == null) {
-      throw new BuiltValueNullFieldError('Article', 'deleted');
-    }
     if (type == null) {
       throw new BuiltValueNullFieldError('Article', 'type');
     }
@@ -211,15 +223,6 @@ class _$Article extends Article {
     }
     if (time == null) {
       throw new BuiltValueNullFieldError('Article', 'time');
-    }
-    if (text == null) {
-      throw new BuiltValueNullFieldError('Article', 'text');
-    }
-    if (parent == null) {
-      throw new BuiltValueNullFieldError('Article', 'parent');
-    }
-    if (poll == null) {
-      throw new BuiltValueNullFieldError('Article', 'poll');
     }
     if (kids == null) {
       throw new BuiltValueNullFieldError('Article', 'kids');
