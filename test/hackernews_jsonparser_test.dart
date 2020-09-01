@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:news_app/hackernews_jsonparser.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as json;
 
 void main() {
   test("parse top stories", () {
@@ -8,10 +10,29 @@ void main() {
 
     expect(parseStories(topStoriesJson).first, 24229269);
   });
-
   test("parse article", () {
     final itemJson = """{"by":"vaillancourtmax","descendants":36,"id":24228651,"kids":[24230607,24229407,24230014,24229378,24229641,24230340,24229070,24230177,24229377,24229777,24229292],"score":185,"time":1597955942,"title":"How Shopify reduced storefront response times with a rewrite","type":"story","url":"https://engineering.shopify.com/blogs/engineering/how-shopify-reduced-storefront-response-times-rewrite"}""";
 
     expect(parseArticle(itemJson).by, "vaillancourtmax");
   });
+
+  test("parse article via network", () async {
+    final bestStoriesEndpoint = 'https://hacker-news.firebaseio.com/v0/beststories.json';
+    var bestStoriesResponse = await http.get(bestStoriesEndpoint);
+    if (bestStoriesResponse.statusCode == 200) {
+      List bestStoriesIds = json.jsonDecode(bestStoriesResponse.body);
+      final itemEndpoint = 'https://hacker-news.firebaseio.com/v0/item/${bestStoriesIds.first}.json';
+      var itemResponse = await http.get(itemEndpoint);
+
+      if (itemResponse.statusCode == 200) {
+        print(itemResponse.body);
+        expect(parseArticle(itemResponse.body).title, "I thought I would have accomplished a lot more today and also before I was 35");
+      } else {
+        fail("Unable to get item from $itemEndpoint");
+      }
+    } else {
+      fail("Unable to get best stories from $bestStoriesEndpoint.");
+    }
+  });
+
 }
