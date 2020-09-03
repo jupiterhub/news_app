@@ -31,5 +31,3 @@ abstract class Article implements Built<Article, ArticleBuilder> {
   Article._();
   factory Article([void Function(ArticleBuilder) updates]) = _$Article;
 }
-
-List<Article> articles = [];
