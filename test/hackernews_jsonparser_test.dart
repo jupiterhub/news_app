@@ -26,7 +26,7 @@ void main() {
 
       if (itemResponse.statusCode == 200) {
         print(itemResponse.body);
-        expect(parseArticle(itemResponse.body).title, "I thought I would have accomplished a lot more today and also before I was 35");
+        expect(parseArticle(itemResponse.body).title, isNotEmpty);
       } else {
         fail("Unable to get item from $itemEndpoint");
       }
