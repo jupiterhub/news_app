@@ -35,4 +35,8 @@ void main() {
     }
   });
 
+  test("an example of a skipped test", () {
+    // nothing here this will be skipped
+  }, skip: true);
+
 }
