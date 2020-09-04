@@ -31,8 +31,8 @@ class HackerNewsBloc {
 
   HackerNewsBloc() {
     _updateArticles().then((_) =>  {
-      _articleSubject.add(UnmodifiableListView(_articles));
-    })
+      _articleSubject.add(UnmodifiableListView(_articles))
+    });
   }
 
   Stream<UnmodifiableListView<Article>> get articles => _articleSubject.stream;

@@ -49,13 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: StreamBuilder<UnmodifiableListView<Article>>(
           stream: widget.bloc.articles,
-          builder: UnmodifiableListView<Article>([]),
-          initialData: (context, snapshot) =>
-              ListView(
-                children: snapshot.data.map(_buildArticle).toList(),
-              )
+          initialData: UnmodifiableListView<Article>([]),
+          builder:  (context, snapshot) => ListView(
+              children: snapshot.data.map(_buildArticle).toList(),
+          )
       ),
-    )
+    );
   }
 
   Widget _buildArticle(Article article) {
