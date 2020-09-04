@@ -20,13 +20,13 @@ void main() {
     final bestStoriesEndpoint = 'https://hacker-news.firebaseio.com/v0/beststories.json';
     var bestStoriesResponse = await http.get(bestStoriesEndpoint);
     if (bestStoriesResponse.statusCode == 200) {
-      List bestStoriesIds = json.jsonDecode(bestStoriesResponse.body);
+      List bestStoriesIds = parseStories(bestStoriesResponse.body);
       final itemEndpoint = 'https://hacker-news.firebaseio.com/v0/item/${bestStoriesIds.first}.json';
       var itemResponse = await http.get(itemEndpoint);
 
       if (itemResponse.statusCode == 200) {
         print(itemResponse.body);
-        expect(parseArticle(itemResponse.body).title, isNotEmpty);
+        expect(parseArticle(itemResponse.body).type, isNotEmpty);
       } else {
         fail("Unable to get item from $itemEndpoint");
       }

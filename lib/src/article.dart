@@ -10,7 +10,10 @@ abstract class Article implements Built<Article, ArticleBuilder> {
       int get id;
       @nullable
       bool get deleted;
-      String get type; // "job", "story", "comment", "poll", or "pollopt".
+      /// The type of article.
+      ///
+      /// Possible values are: "job", "story", "comment", "poll", or "pollopt".
+      String get type;
       String get by;
       int get time;
       @nullable
