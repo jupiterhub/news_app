@@ -9,7 +9,6 @@ List<int> parseStories(String jsonStr) {
   return json.cast<int>();
 }
 
-// Article
 Article parseArticle(String jsonStr) {
   Map<String, dynamic> json = jsonDecode(jsonStr);
   return serializers.deserializeWith(Article.serializer, json);
