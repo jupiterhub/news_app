@@ -26,7 +26,9 @@ class HackerNewsBloc {
     24343572,
     24342540,
     24332485,
-    24331698
+    24331698,
+    -1,
+    -2,
   ];
 
   HackerNewsBloc() {
