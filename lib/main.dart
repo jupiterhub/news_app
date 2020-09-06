@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Latest news', bloc: bloc),
+      home: MyHomePage(title: 'Hacker news replica', bloc: bloc),
     );
   }
 }
@@ -53,6 +53,18 @@ class _MyHomePageState extends State<MyHomePage> {
           builder:  (context, snapshot) => ListView(
               children: snapshot.data.map(_buildArticle).toList(),
           )
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            title: Text('Top stories'),
+            icon: Icon(Icons.whatshot)
+          ),
+          BottomNavigationBarItem(
+            title: Text('Latest stories'),
+            icon: Icon(Icons.fiber_new)
+          ),
+        ],
       ),
     );
   }

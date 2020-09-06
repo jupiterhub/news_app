@@ -27,8 +27,6 @@ class HackerNewsBloc {
     24342540,
     24332485,
     24331698,
-    -1,
-    -2,
   ];
 
   HackerNewsBloc() {
@@ -51,7 +49,7 @@ class HackerNewsBloc {
   }
 
   Future<Null> _updateArticles() async {
-    final futureArticles = await  _ids.map((id) => _getArticle(id));
+    final futureArticles = await _ids.map((id) => _getArticle(id));
     final articles = await Future.wait(futureArticles);
     _articles = articles;
   }
