@@ -56,6 +56,13 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 1,
+        onTap: (index) {
+          if (index == 0) {
+            print('Top stories');
+          } else {
+            print('New stories');
+          }
+        },
         items: [
           BottomNavigationBarItem(
             title: Text('Top stories'),

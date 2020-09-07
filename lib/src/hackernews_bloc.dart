@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:rxdart/rxdart.dart';
@@ -6,11 +7,18 @@ import 'package:news_app/src/article.dart';
 import 'package:news_app/hackernews_jsonparser.dart';
 import 'package:http/http.dart' as http;
 
+enum StoriesType {
+  hottest,
+  latest
+}
+
 class HackerNewsBloc {
   final _articleSubject = BehaviorSubject<UnmodifiableListView<Article>>();
   var _articles = <Article>[];
 
-  List<int> _ids = [
+  final _storiesTypeController = StreamController<StoriesType>();
+
+  List<int> _latestIds = [
     24322861,
     24341535,
     24343672,
@@ -19,6 +27,9 @@ class HackerNewsBloc {
     24341867,
     24324974,
     24332412,
+  ];
+
+  List<int> _hottestIds = [
     24343361,
     24330326,
     24344045,
@@ -29,13 +40,29 @@ class HackerNewsBloc {
     24331698,
   ];
 
+  Sink<StoriesType> get storiesType  => _storiesTypeController.sink;
+  Stream<UnmodifiableListView<Article>> get articles => _articleSubject.stream;
+
   HackerNewsBloc() {
-    _updateArticles().then((_) =>  {
+    print('getting bloc');
+    getArticlesAndAddToSubject(_latestIds);
+
+    _storiesTypeController.stream.listen((storiesType) {
+      if (storiesType == StoriesType.hottest) {
+        getArticlesAndAddToSubject(_hottestIds);
+      } else if (storiesType == StoriesType.latest) {
+        getArticlesAndAddToSubject(_latestIds);
+      } else {
+        throw UnsupportedError("Unsupported story type");
+      }
+    });
+  }
+  getArticlesAndAddToSubject(List<int> ids) {
+    _updateArticles(ids).then((_) =>  {
       _articleSubject.add(UnmodifiableListView(_articles))
     });
   }
 
-  Stream<UnmodifiableListView<Article>> get articles => _articleSubject.stream;
 
 
   Future<Article> _getArticle(int id) async {
@@ -48,8 +75,8 @@ class HackerNewsBloc {
     return Future.value(null);
   }
 
-  Future<Null> _updateArticles() async {
-    final futureArticles = await _ids.map((id) => _getArticle(id));
+  Future<Null> _updateArticles(List<int> ids) async {
+    final futureArticles = await ids.map((id) => _getArticle(id));
     final articles = await Future.wait(futureArticles);
     _articles = articles;
   }
