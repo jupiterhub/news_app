@@ -55,6 +55,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 1,
         items: [
           BottomNavigationBarItem(
             title: Text('Top stories'),
