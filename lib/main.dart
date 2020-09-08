@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Hacker news replica', bloc: bloc),
+      home: MyHomePage(title: 'Hacker news', bloc: bloc),
     );
   }
 }
@@ -34,6 +34,7 @@ class MyHomePage extends StatefulWidget {
   final HackerNewsBloc bloc;
   final String title;
 
+
   MyHomePage({Key key, this.title, this.bloc}) : super(key: key);
 
   @override
@@ -41,6 +42,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int navigationIndex = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,17 +54,20 @@ class _MyHomePageState extends State<MyHomePage> {
           stream: widget.bloc.articles,
           initialData: UnmodifiableListView<Article>([]),
           builder:  (context, snapshot) => ListView(
-              children: snapshot.data.map(_buildArticle).toList(),
+              children: snapshot.data.map((x) => _buildArticle(x)).toList(),
           )
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 1,
+        currentIndex: navigationIndex,
         onTap: (index) {
           if (index == 0) {
-            print('Top stories');
+            widget.bloc.storiesType.add(StoriesType.hottest);
           } else {
-            print('New stories');
+            widget.bloc.storiesType.add(StoriesType.latest);
           }
+          setState(() {
+            navigationIndex = index;
+          });
         },
         items: [
           BottomNavigationBarItem(

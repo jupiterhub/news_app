@@ -44,7 +44,6 @@ class HackerNewsBloc {
   Stream<UnmodifiableListView<Article>> get articles => _articleSubject.stream;
 
   HackerNewsBloc() {
-    print('getting bloc');
     getArticlesAndAddToSubject(_latestIds);
 
     _storiesTypeController.stream.listen((storiesType) {
@@ -76,7 +75,7 @@ class HackerNewsBloc {
   }
 
   Future<Null> _updateArticles(List<int> ids) async {
-    final futureArticles = await ids.map((id) => _getArticle(id));
+    final futureArticles = ids.map((id) => _getArticle(id));
     final articles = await Future.wait(futureArticles);
     _articles = articles;
   }
