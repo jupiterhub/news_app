@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        leading: LoadingInfo(bloc: widget.bloc),
       ),
       body: StreamBuilder<UnmodifiableListView<Article>>(
           stream: widget.bloc.articles,
@@ -123,3 +124,18 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 }
+
+class LoadingInfo extends StatelessWidget {
+  final HackerNewsBloc bloc;
+
+  LoadingInfo({Key key, this.bloc}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+      stream: bloc.isLoading,
+      builder: (context, snapshot) => snapshot.hasData && !snapshot.data ? CircularProgressIndicator(backgroundColor: Colors.white) : Container(),
+    );
+  }
+}
+
