@@ -135,7 +135,7 @@ class LoadingInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: bloc.isLoading,
-      builder: (context, snapshot) => snapshot.hasData && !snapshot.data ? CircularProgressIndicator(backgroundColor: Colors.white) : FaIcon(FontAwesomeIcons.hackerNews),
+      builder: (context, snapshot) => snapshot.hasData && !snapshot.data ? CircularProgressIndicator(backgroundColor: Colors.white) : FaIcon(FontAwesomeIcons.hackerNews, size: 50,),
     );
   }
 }
