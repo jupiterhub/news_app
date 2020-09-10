@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/src/article.dart';
 import 'package:news_app/src/hackernews_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
   final hackerNewsBloc = HackerNewsBloc();
@@ -134,7 +135,7 @@ class LoadingInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder(
       stream: bloc.isLoading,
-      builder: (context, snapshot) => snapshot.hasData && !snapshot.data ? CircularProgressIndicator(backgroundColor: Colors.white) : Container(),
+      builder: (context, snapshot) => snapshot.hasData && !snapshot.data ? CircularProgressIndicator(backgroundColor: Colors.white) : FaIcon(FontAwesomeIcons.hackerNews),
     );
   }
 }
