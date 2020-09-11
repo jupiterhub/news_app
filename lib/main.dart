@@ -35,7 +35,6 @@ class MyHomePage extends StatefulWidget {
   final HackerNewsBloc bloc;
   final String title;
 
-
   MyHomePage({Key key, this.title, this.bloc}) : super(key: key);
 
   @override
@@ -55,10 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
       body: StreamBuilder<UnmodifiableListView<Article>>(
           stream: widget.bloc.articles,
           initialData: UnmodifiableListView<Article>([]),
-          builder:  (context, snapshot) => ListView(
-              children: snapshot.data.map((x) => _buildArticle(x)).toList(),
-          )
-      ),
+          builder: (context, snapshot) => ListView(
+                children: snapshot.data.map((x) => _buildArticle(x)).toList(),
+              )),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navigationIndex,
         onTap: (index) {
@@ -73,13 +71,9 @@ class _MyHomePageState extends State<MyHomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            title: Text('Top stories'),
-            icon: Icon(Icons.whatshot)
-          ),
+              title: Text('Top stories'), icon: Icon(Icons.whatshot)),
           BottomNavigationBarItem(
-            title: Text('Latest stories'),
-            icon: Icon(Icons.fiber_new)
-          ),
+              title: Text('Latest stories'), icon: Icon(Icons.fiber_new)),
         ],
       ),
     );
@@ -126,17 +120,38 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class LoadingInfo extends StatelessWidget {
+class LoadingInfo extends StatefulWidget {
   final HackerNewsBloc bloc;
 
   LoadingInfo({Key key, this.bloc}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: bloc.isLoading,
-      builder: (context, snapshot) => snapshot.hasData && !snapshot.data ? CircularProgressIndicator(backgroundColor: Colors.white, strokeWidth: 1,) : FaIcon(FontAwesomeIcons.hackerNews, size: 50,),
-    );
-  }
+  _LoadingInfoState createState() => _LoadingInfoState();
 }
 
+class _LoadingInfoState extends State<LoadingInfo>
+    with TickerProviderStateMixin {
+  AnimationController _controller;
+
+  @override
+  void initState() {
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _controller.repeat();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder(
+        stream: widget.bloc.isLoading,
+        builder: (context, snapshot) {
+          if (snapshot.hasData && !snapshot.data) {
+            return FadeTransition(
+                opacity: _controller,
+                child: Center(child: FaIcon(FontAwesomeIcons.hackerNewsSquare)));
+          }
+          return Center(child: FaIcon(FontAwesomeIcons.hackerNewsSquare));
+        });
+  }
+}
