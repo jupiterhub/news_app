@@ -136,8 +136,7 @@ class _LoadingInfoState extends State<LoadingInfo>
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
-    _controller.repeat();
+        AnimationController(vsync: this);
     super.initState();
   }
 
@@ -147,6 +146,7 @@ class _LoadingInfoState extends State<LoadingInfo>
         stream: widget.bloc.isLoading,
         builder: (context, snapshot) {
           if (snapshot.hasData && !snapshot.data) {
+            _controller.repeat(reverse: true, period: Duration(milliseconds: 300));
             return FadeTransition(
                 opacity: _controller,
                 child: Center(child: FaIcon(FontAwesomeIcons.hackerNewsSquare)));
