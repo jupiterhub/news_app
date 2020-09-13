@@ -25,10 +25,12 @@ abstract class Article implements Built<Article, ArticleBuilder> {
       @nullable
       int get poll;
       BuiltList<int> get kids;
+      @nullable
       String get url;
       int get score;
       String get title;
       BuiltList<int> get parts;
+      @nullable
       int get descendants;
 
   Article._();
