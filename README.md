@@ -1,16 +1,11 @@
-# news_app
+# Overview
+A news aggregator app, currently based on HackernNews
 
-simple news app
+# Goals
+- Evaluatet to use Flutter
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Jupiter's review
+- Mobile development has never been simpler
+- No need to worry about threads and intents for android, it's very declarative and Flutter takes care of that
+- Native source Kotlin/Swift are still accessible for low-level changes
+- Performance is good and can basically refresh in 60fps
